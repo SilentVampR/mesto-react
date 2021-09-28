@@ -28,8 +28,23 @@ function App() {
   /* END ADD PLACE */
 
   /* CONFIRM */
-  let isConfirmPopupOpen = false;
+  const [isConfirmPopupOpen, setConfirmPopupState] = useState(false);
+  //const [deletedCard, setDeletedCardId] = useState();
+  const handleDeleteClick = (id) => {
+    setConfirmPopupState(true);
+    //setDeletedCardId(id); Будем использовать это позже, когда поймем как воткнуть элементы в попапы
+  }
+
   /* END CONFIRM */
+
+  /* IMAGE POPUP */
+  const [isImagePopupOpen, setImagePopupState] = useState(false);
+  const [selectedCard, setSelectedCardId] = useState([]);
+  const handleCardClick = (item) => {
+    setImagePopupState(true);
+    setSelectedCardId(item);
+  }
+  /* END IMAGE POPUP */
 
   /* ALL POPUPS */
   const closeAllPopups = (e) => {
@@ -37,6 +52,9 @@ function App() {
       setAvatarState(false);
       setProfileState(false);
       setAddPlaceState(false);
+      setImagePopupState(false);
+      setSelectedCardId([]);
+      setConfirmPopupState(false);
       //document.querySelector('.popup_opened').classList.remove('popup_opened')
     }
   }
@@ -48,6 +66,8 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
+        onDeleteClick={handleDeleteClick}
       />
       <Footer />
       <PopupWithForm
@@ -81,7 +101,11 @@ function App() {
         isOpen={isConfirmPopupOpen}
         onClose={closeAllPopups}
       />
-      <ImagePopup />
+      <ImagePopup
+        isOpen={isImagePopupOpen}
+        onClose={closeAllPopups}
+        card={selectedCard}
+      />
     </>
   );
 }

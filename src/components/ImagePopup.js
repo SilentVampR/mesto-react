@@ -1,10 +1,12 @@
 import tempImage from '../images/temp_image.jpg';
 
-function ImagePopup() {
+function ImagePopup(props) {
   return (
-    <div className="popup popup_type_image-overlay">
+    <div className={`popup popup_type_image-overlay${props.isOpen ? ' popup_opened' : ''}`} onClick={props.onClose}>
       <figure className="popup__image-container">
-        <img src={tempImage} alt="Нет изображения" className="popup__image" />
+        <img src={props.card.link ? props.card.link : tempImage} alt={props.card.name} className="popup__image" />
+        <button className="popup__close-button" type="button" onClick={props.onClose}></button>
+        <figcaption className="popup__image-caption">{props.card.name}</figcaption>
       </figure>
     </div>
   );
