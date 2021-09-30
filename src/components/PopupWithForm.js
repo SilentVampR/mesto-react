@@ -1,8 +1,7 @@
-//function PopupWithForm({title, type, buttonText, children, isOpen}) {
 function PopupWithForm(props) {
   return (
-    <div className={`popup popup_type_${props.type}${props.isOpen ? ' popup_opened' : ''}`} onClick={props.onClose}>
-      <form className="popup__form-container" name={props.type} noValidate>
+    <div className={`popup popup_type_${props.type}${props.isOpen ? ' popup_opened' : ''}`} onClick={props.onOverlayClick}>
+      <form className="popup__form-container" name={props.type}>
         <h2 className="popup__title">{props.title}</h2>
         <div>
           {props.children}

@@ -15,20 +15,19 @@ function Card(props) {
   const handleDeleteClick = (id) => {
     props.onDeleteClick(id);
   }
+  const card = props.card;
   return (
-    props.cards.map((item) => (
-      <div className="card" key={item._id}>
-        <img src={item.link} alt={item.name} className="card__image" onClick={() => handleImageClick(item)} />
-        <button className={`card__delete-button${item.owner._id === props.myId && ' card__delete-button_active'}`} type="button" onClick={() => handleDeleteClick(item._id)}></button>
-        <div className="card__footer">
-          <h2 className="card__title">{item.name}</h2>
-          <div className="card__like-container">
-            <button className={`card__like-button${searchLike(item.likes) ? ' card__like-button_active' : ' false_bitch'}`} type="button"></button>
-            <p className="card__like-counter">{countLikes(item.likes)}</p>
-          </div>
+    <div className="card">
+      <img src={card.link} alt={card.name} className="card__image" onClick={() => handleImageClick(card)} />
+      <button className={`card__delete-button${card.owner._id === props.myId && ' card__delete-button_active'}`} type="button" onClick={() => handleDeleteClick(card._id)}></button>
+      <div className="card__footer">
+        <h2 className="card__title">{card.name}</h2>
+        <div className="card__like-container">
+          <button className={`card__like-button${searchLike(card.likes) ? ' card__like-button_active' : ' false_bitch'}`} type="button"></button>
+          <p className="card__like-counter">{countLikes(card.likes)}</p>
         </div>
       </div>
-    ))
+    </div>
   );
 }
 
