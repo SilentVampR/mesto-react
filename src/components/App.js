@@ -7,46 +7,46 @@ import ImagePopup from './ImagePopup';
 
 function App() {
   /* AVATAR */
-  const [isEditAvatarPopupOpen, setAvatarState] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const handleEditAvatarClick = () => {
-    setAvatarState(true);
+    setIsEditAvatarPopupOpen(true);
   }
   /* END AVATAR*/
 
   /* PROFILE */
-  const [isEditProfilePopupOpen, setProfileState] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const handleEditProfileClick = () => {
-    setProfileState(true);
+    setIsEditProfilePopupOpen(true);
   }
   /* END PROFILE */
 
   /* ADD PLACE */
-  const [isAddPlacePopupOpen, setAddPlaceState] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const handleAddPlaceClick = () => {
-    setAddPlaceState(true);
+    setIsAddPlacePopupOpen(true);
   }
   /* END ADD PLACE */
 
   /* CONFIRM */
   const handleChangeId = (evt) => {
-    setDeletedCardId(evt.target.value);
+    setDeletedCard(evt.target.value);
   }
 
-  const [isConfirmPopupOpen, setConfirmPopupState] = useState(false);
-  const [deletedCard, setDeletedCardId] = useState({cardId: ''});
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
+  const [deletedCard, setDeletedCard] = useState({cardId: ''});
   const handleDeleteClick = (id) => {
-    setConfirmPopupState(true);
-    setDeletedCardId({cardId: id});
+    setIsConfirmPopupOpen(true);
+    setDeletedCard({cardId: id});
   }
 
   /* END CONFIRM */
 
   /* IMAGE POPUP */
-  const [isImagePopupOpen, setImagePopupState] = useState(false);
-  const [selectedCard, setSelectedCardId] = useState({name:'', link: ''});
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({name:'', link: ''});
   const handleCardClick = (item) => {
-    setImagePopupState(true);
-    setSelectedCardId({name: item.name, link: item.link});
+    setIsImagePopupOpen(true);
+    setSelectedCard({name: item.name, link: item.link});
   }
   /* END IMAGE POPUP */
 
@@ -59,12 +59,12 @@ function App() {
   }
 
   const closeAllPopups = () => {
-    setAvatarState(false);
-    setProfileState(false);
-    setAddPlaceState(false);
-    setImagePopupState(false);
-    setSelectedCardId({name:'', link: ''});
-    setConfirmPopupState(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard({name:'', link: ''});
+    setIsConfirmPopupOpen(false);
+    setIsImagePopupOpen(false);
   }
   /* END ALL POPUPS */
   return (
