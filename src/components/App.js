@@ -1,11 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import api from '../utils/api';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
+  const [currentUser, setCurentUser] = useState({});
+  useEffect(() => {
+    api.getUserInfo()
+    .then(res => setCurentUser(res))
+    .catch(err => {
+      console.log(err);
+    });
+  }, []);
+
   /* AVATAR */
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const handleEditAvatarClick = () => {
@@ -68,7 +79,7 @@ function App() {
   }
   /* END ALL POPUPS */
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditAvatar={handleEditAvatarClick}
@@ -141,7 +152,7 @@ function App() {
         card={selectedCard}
         onOverlayClick={handleOverlayClick}
       />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

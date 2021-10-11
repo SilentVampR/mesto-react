@@ -55,7 +55,19 @@ class Api {
       })
   }
 
-  addLike(id) {
+  changeLikeCardStatus(id, isLiked) {
+    const url = this._apiURL + '/cards/likes/' + id
+    const methodName = isLiked ? 'PUT' : 'DELETE';
+    return fetch(url, {
+      method: methodName,
+      headers: this._headers
+    })
+    .then(res => {
+      return this._checkResponse(res, 'Ошибка изменения лайка для карточки');
+    })
+  }
+
+  /*addLike(id) {
     return fetch(this._apiURL + '/cards/likes/' + id, {
       method: 'PUT',
       headers: this._headers
@@ -73,7 +85,7 @@ class Api {
     .then(res => {
       return this._checkResponse(res, 'Ошибка удаления лайка для карточки');
     })
-  }
+  }*/
 
   editAvatar(data) {
     return fetch(this._apiURL + '/users/me/avatar', {
