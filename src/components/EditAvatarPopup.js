@@ -5,6 +5,13 @@ function EditAvatarPopup(props) {
 
   const avatarUrlInput = React.useRef();
 
+  React.useEffect(() => {
+    if(props.isSended === true)
+    {
+      avatarUrlInput.current.value = ''
+    }
+  },[props.isSended]);
+
   const handleOnChange = () => {
 
   }
@@ -12,7 +19,6 @@ function EditAvatarPopup(props) {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     props.onUpdateAvatar(avatarUrlInput.current.value);
-    avatarUrlInput.current.value = '';
   }
 
   return (
